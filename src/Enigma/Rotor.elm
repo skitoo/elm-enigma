@@ -8,3 +8,12 @@ type alias Rotor =
   , turnover: Char
   }
 
+
+{-| Build a Rotor. -}
+buildRotor : String -> Char -> Rotor
+buildRotor alphabet turnover =
+  { alphabet = alphabet
+  , position = Nothing
+  , turnover = turnover
+  }
+
