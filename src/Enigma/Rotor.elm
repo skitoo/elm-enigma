@@ -17,3 +17,8 @@ buildRotor alphabet turnover =
   , turnover = turnover
   }
 
+
+{-| Initialize a Rotor to a position. -}
+initRotor : Rotor -> Char -> Rotor
+initRotor rotor position =
+  { rotor | position = Just position }
