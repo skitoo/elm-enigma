@@ -4,6 +4,7 @@ import Test exposing (Test, describe)
 import Test.Runner.Node exposing (run)
 import Json.Encode exposing (Value)
 
+import ReflectorTests
 import UtilsTests
 
 
@@ -11,6 +12,7 @@ all : Test
 all =
   describe "Enigma tests"
     [ UtilsTests.all
+    , ReflectorTests.all
     ]
 
 
