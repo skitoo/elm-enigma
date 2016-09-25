@@ -8,8 +8,8 @@ type alias Reflector = String
 
 
 {-| Compute a Char in given reflector -}
-computeReflector : Reflector -> Char -> Maybe Char
-computeReflector reflector entry =
+signal : Reflector -> Char -> Maybe Char
+signal reflector entry =
   case (getIndex entry baseAlphabet) of
     Just value ->
       String.slice value (value + 1) reflector

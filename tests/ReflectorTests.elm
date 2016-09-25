@@ -4,7 +4,7 @@ import Test exposing (..)
 import Expect
 
 import Enigma exposing (reflectorB)
-import Enigma.Reflector exposing (computeReflector)
+import Enigma.Reflector exposing (signal)
 
 
 
@@ -12,18 +12,18 @@ all : Test
 all =
   describe "Reflector"
     [
-      describe "compute 'C'"
-        [ test "computeReflector" <|
+      describe "signal 'C'"
+        [ test "signal" <|
             \() ->
-              computeReflector reflectorB 'C'
+              signal reflectorB 'C'
                 |> Expect.equal (Just 'U')
-        , test "compute 'U'" <|
+        , test "signal 'U'" <|
             \() ->
-              computeReflector reflectorB 'U'
+              signal reflectorB 'U'
                 |> Expect.equal (Just 'C')
-        , test "compute '3'" <|
+        , test "signal '3'" <|
             \() ->
-              computeReflector reflectorB '3'
+              signal reflectorB '3'
                 |> Expect.equal Nothing
         ]
     ]
