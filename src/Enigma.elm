@@ -21,37 +21,33 @@ module Enigma exposing
 
 -}
 
-import Enigma.Rotor exposing
-  ( Rotor
-  , buildRotor
-  , initRotor
-  )
+import Enigma.Rotor as Rotor exposing (Rotor)
 import Enigma.Reflector exposing (..)
 
 
 {-| Define rotorI -}
 rotorI : Rotor
-rotorI = buildRotor "EKMFLGDQVZNTOWYHXUSPAIBRCJ" 'Q'
+rotorI = Rotor.build "EKMFLGDQVZNTOWYHXUSPAIBRCJ" 'Q'
 
 
 {-| Define rotorII -}
 rotorII : Rotor
-rotorII = buildRotor "AJDKSIRUXBLHWTMCQGZNPYFVOE" 'E'
+rotorII = Rotor.build "AJDKSIRUXBLHWTMCQGZNPYFVOE" 'E'
 
 
 {-| Define rotorIII -}
 rotorIII : Rotor
-rotorIII = buildRotor "BDFHJLCPRTXVZNYEIWGAKMUSQO" 'V'
+rotorIII = Rotor.build "BDFHJLCPRTXVZNYEIWGAKMUSQO" 'V'
 
 
 {-| Define rotorIV -}
 rotorIV : Rotor
-rotorIV = buildRotor "ESOVPZJAYQUIRHXLNFTGKDCMWB" 'J'
+rotorIV = Rotor.build "ESOVPZJAYQUIRHXLNFTGKDCMWB" 'J'
 
 
 {-| Define rotorV -}
 rotorV : Rotor
-rotorV = buildRotor "VZBRGITYUPSDNHLXAWMJQOFECK" 'Z'
+rotorV = Rotor.build "VZBRGITYUPSDNHLXAWMJQOFECK" 'Z'
 
 
 {-| Define reflectorB -}

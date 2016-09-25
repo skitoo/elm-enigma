@@ -2,7 +2,7 @@ module RotorTests exposing (all)
 
 import Test exposing (..)
 import Expect
-import Enigma.Rotor exposing (buildRotor, initRotor, Rotor)
+import Enigma.Rotor exposing (build, initRotor, Rotor)
 
 rotor : Rotor
 rotor =
@@ -15,9 +15,9 @@ rotor =
 all : Test
 all =
   describe "Rotor"
-    [ test "buildRotor" <|
+    [ test "build" <|
         \() ->
-          buildRotor "JGDQOXUSCAMIFRVTPNEWKBLZYH" 'Q'
+          build "JGDQOXUSCAMIFRVTPNEWKBLZYH" 'Q'
             |> Expect.equal rotor
     , test "initRotor" <|
         \() ->
