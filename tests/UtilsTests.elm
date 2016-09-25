@@ -6,6 +6,7 @@ import Enigma.Utils exposing
   ( baseAlphabet
   , isValidChar
   , getIndex
+  , getChar
   )
 
 
@@ -42,6 +43,20 @@ all =
       , test "z position" <|
           \() ->
             getIndex 'z' baseAlphabet
+              |> Expect.equal Nothing
+      ]
+    , describe "getChar"
+      [ test "should return char at index 0" <|
+          \() ->
+            getChar 0 baseAlphabet
+              |> Expect.equal (Just 'A')
+      , test "should return char at index 25" <|
+          \() ->
+            getChar 25 baseAlphabet
+              |> Expect.equal (Just 'Z')
+      , test "should return Nothing" <|
+          \() ->
+            getChar 1000 baseAlphabet
               |> Expect.equal Nothing
       ]
     ]
