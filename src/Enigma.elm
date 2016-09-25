@@ -22,40 +22,40 @@ module Enigma exposing
 -}
 
 import Enigma.Rotor as Rotor exposing (Rotor)
-import Enigma.Reflector exposing (..)
+import Enigma.Reflector as Reflector exposing (Reflector)
 
 
 {-| Define rotorI -}
 rotorI : Rotor
-rotorI = Rotor.build "EKMFLGDQVZNTOWYHXUSPAIBRCJ" 'Q'
+rotorI = Rotor.init "EKMFLGDQVZNTOWYHXUSPAIBRCJ" 'Q'
 
 
 {-| Define rotorII -}
 rotorII : Rotor
-rotorII = Rotor.build "AJDKSIRUXBLHWTMCQGZNPYFVOE" 'E'
+rotorII = Rotor.init "AJDKSIRUXBLHWTMCQGZNPYFVOE" 'E'
 
 
 {-| Define rotorIII -}
 rotorIII : Rotor
-rotorIII = Rotor.build "BDFHJLCPRTXVZNYEIWGAKMUSQO" 'V'
+rotorIII = Rotor.init "BDFHJLCPRTXVZNYEIWGAKMUSQO" 'V'
 
 
 {-| Define rotorIV -}
 rotorIV : Rotor
-rotorIV = Rotor.build "ESOVPZJAYQUIRHXLNFTGKDCMWB" 'J'
+rotorIV = Rotor.init "ESOVPZJAYQUIRHXLNFTGKDCMWB" 'J'
 
 
 {-| Define rotorV -}
 rotorV : Rotor
-rotorV = Rotor.build "VZBRGITYUPSDNHLXAWMJQOFECK" 'Z'
+rotorV = Rotor.init "VZBRGITYUPSDNHLXAWMJQOFECK" 'Z'
 
 
 {-| Define reflectorB -}
 reflectorB : Reflector
-reflectorB = "YRUHQSLDPXNGOKMIEBFZCWVJAT"
+reflectorB = Maybe.withDefault [] (Reflector.init "YRUHQSLDPXNGOKMIEBFZCWVJAT")
 
 
 {-| Define reflectorC -}
 reflectorC : Reflector
-reflectorC = "FVPJIAOYEDRZXWGCTKUQSBNMHL"
+reflectorC = Maybe.withDefault [] (Reflector.init "FVPJIAOYEDRZXWGCTKUQSBNMHL")
 

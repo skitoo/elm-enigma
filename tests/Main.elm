@@ -7,12 +7,14 @@ import Json.Encode exposing (Value)
 import RotorTests
 import ReflectorTests
 import UtilsTests
+import WiringTests
 
 
 all : Test
 all =
   describe "Enigma tests"
     [ UtilsTests.all
+    , WiringTests.all
     , ReflectorTests.all
     , RotorTests.all
     ]

@@ -3,10 +3,13 @@ module RotorTests exposing (all)
 import Test exposing (..)
 import Expect
 import Enigma.Rotor as Rotor exposing (Rotor)
+import Enigma.Wiring as Wiring
+import Enigma.Utils exposing (baseAlphabet)
+
 
 rotor : Rotor
 rotor =
-  { alphabet = "JGDQOXUSCAMIFRVTPNEWKBLZYH"
+  { wiring = Maybe.withDefault [] (Wiring.initWiring baseAlphabet "JGDQOXUSCAMIFRVTPNEWKBLZYH")
   , position = Nothing
   , turnover = 'Q'
   }
@@ -17,11 +20,11 @@ all =
   describe "Rotor"
     [ test "build" <|
         \() ->
-          Rotor.build "JGDQOXUSCAMIFRVTPNEWKBLZYH" 'Q'
+          Rotor.init "JGDQOXUSCAMIFRVTPNEWKBLZYH" 'Q'
             |> Expect.equal rotor
-    , test "init" <|
+    , test "setPosition" <|
         \() ->
-          Rotor.init rotor 'C'
+          Rotor.setPosition rotor 'C'
             |> Expect.equal { rotor | position = Just 'C' }
     , describe "rotate"
       [ test "should be nothing" <|
@@ -42,23 +45,23 @@ all =
     , describe "signal"
       [ test "should return 'J'" <|
           \() ->
-            Rotor.signal rotor 'A' False
+            Rotor.signal 'A' rotor False
               |> Expect.equal (Just 'J')
       , test "should return 'H'" <|
           \() ->
-            Rotor.signal rotor 'Z' False
+            Rotor.signal 'Z' rotor False
               |> Expect.equal (Just 'H')
       , test "should return Nothing" <|
           \() ->
-            Rotor.signal rotor '@' False
+            Rotor.signal '@' rotor False
               |> Expect.equal Nothing
       , test "should return 'A'" <|
           \() ->
-            Rotor.signal rotor 'J' True
+            Rotor.signal 'J' rotor True
               |> Expect.equal (Just 'A')
       , test "should return 'Z'" <|
           \() ->
-            Rotor.signal rotor 'H' True
+            Rotor.signal 'H' rotor True
               |> Expect.equal (Just 'Z')
       ]
     ]
