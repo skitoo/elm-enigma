@@ -23,4 +23,20 @@ all =
         \() ->
           Rotor.init rotor 'C'
             |> Expect.equal { rotor | position = Just 'C' }
+    , describe "rotate"
+      [ test "should be nothing" <|
+          \() ->
+            Rotor.rotate rotor
+              |> Expect.equal rotor
+      , test "should pass position to X" <|
+          \() ->
+            { rotor | position = Just 'O' }
+              |> Rotor.rotate
+              |> Expect.equal { rotor | position = Just 'X' }
+      , test "should pass position to J" <|
+          \() ->
+            { rotor | position = Just 'H' }
+              |> Rotor.rotate
+              |> Expect.equal { rotor | position = Just 'J' }
+      ]
     ]
