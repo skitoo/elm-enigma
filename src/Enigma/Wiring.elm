@@ -52,3 +52,30 @@ signal plug wiring reverse =
         Just (if reverse then wire.input else wire.output)
       Nothing ->
         Nothing
+
+
+extractAlphabet: (Wire -> Plug) -> Wiring -> String
+extractAlphabet func wiring =
+  List.map func wiring
+    |> List.map String.fromChar
+    |> String.join ""
+
+
+inputPlug: Wire -> Plug
+inputPlug wire =
+    wire.input
+
+
+inputAlphabet: Wiring -> String
+inputAlphabet wiring =
+  extractAlphabet inputPlug wiring
+
+
+outputPlug: Wire -> Plug
+outputPlug wire =
+  wire.output
+
+
+outputAlphabet: Wiring -> String
+outputAlphabet wiring =
+  extractAlphabet outputPlug wiring

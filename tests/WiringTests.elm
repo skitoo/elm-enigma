@@ -67,4 +67,32 @@ all =
                 Nothing ->
                   Expect.fail "should be fail"
       ]
+      , describe "inputPlug"
+        [ test "should return 'A'" <|
+            \() ->
+              Wiring.initWire 'A' 'Z'
+                |> Wiring.inputPlug
+                |> Expect.equal 'A'
+        ]
+      , describe "outputPlug"
+        [ test "should return 'Z'" <|
+            \() ->
+              Wiring.initWire 'Z' 'A'
+                |> Wiring.inputPlug
+                |> Expect.equal 'Z'
+        ]
+      , describe "inputAlphabet"
+        [ test "should return ABC" <|
+            \() ->
+              Maybe.withDefault [] (Wiring.initWiring "ABC" "ZYX")
+                |> Wiring.inputAlphabet
+                |> Expect.equal "ABC"
+        ]
+      , describe "outputAlphabet"
+        [ test "should return ZYX" <|
+            \() ->
+              Maybe.withDefault [] (Wiring.initWiring "ABC" "ZYX")
+                |> Wiring.outputAlphabet
+                |> Expect.equal "ZYX"
+        ]
     ]
