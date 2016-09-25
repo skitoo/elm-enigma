@@ -5,7 +5,7 @@ import Expect
 import Enigma.Utils exposing
   ( baseAlphabet
   , isValidChar
-  , getPosition
+  , getIndex
   )
 
 
@@ -30,18 +30,18 @@ all =
               isValidChar 'À'
                 |> Expect.false "Expected the char to not be valid"
         ]
-    , describe "getPosition"
+    , describe "getIndex"
       [ test "A position" <|
           \() ->
-            getPosition 'A' baseAlphabet
+            getIndex 'A' baseAlphabet
               |> Expect.equal (Just 0)
       , test "Z position" <|
           \() ->
-            getPosition 'Z' baseAlphabet
+            getIndex 'Z' baseAlphabet
               |> Expect.equal (Just 25)
       , test "z position" <|
           \() ->
-            getPosition 'z' baseAlphabet
+            getIndex 'z' baseAlphabet
               |> Expect.equal Nothing
       ]
     ]

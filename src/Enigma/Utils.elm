@@ -13,8 +13,8 @@ isValidChar char =
   Char.isUpper char
 
 
-getPosition : Char -> String -> Maybe Int
-getPosition char alphabet =
+getIndex : Char -> String -> Maybe Int
+getIndex char alphabet =
   let index =
     String.indexes (String.fromChar char) alphabet
   in
