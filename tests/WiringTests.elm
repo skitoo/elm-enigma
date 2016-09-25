@@ -32,4 +32,39 @@ all =
               Wiring.initWiring "ABCDE" "ZYXWV"
                 |> Expect.equal (Just expectedValue)
       ]
+    , describe "signal"
+      [ test "should return Nothing" <|
+          \() ->
+            let
+              maybeWiring = Wiring.initWiring "ABCDE" "ZXYWV"
+            in
+              case maybeWiring of
+                Just wiring ->
+                  Wiring.signal 'G' wiring False
+                    |> Expect.equal Nothing
+                Nothing ->
+                  Expect.fail "should be fail"
+      , test "should return 'Z'" <|
+          \() ->
+            let
+              maybeWiring = Wiring.initWiring "ABCDE" "ZXYWV"
+            in
+              case maybeWiring of
+                Just wiring ->
+                  Wiring.signal 'A' wiring False
+                    |> Expect.equal (Just 'Z')
+                Nothing ->
+                  Expect.fail "should be fail"
+      , test "should return 'A'" <|
+          \() ->
+            let
+              maybeWiring = Wiring.initWiring "ABCDE" "ZXYWV"
+            in
+              case maybeWiring of
+                Just wiring ->
+                  Wiring.signal 'Z' wiring True
+                    |> Expect.equal (Just 'A')
+                Nothing ->
+                  Expect.fail "should be fail"
+      ]
     ]

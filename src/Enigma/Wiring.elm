@@ -31,3 +31,24 @@ initWiring inputAlphabet outputAlphabet =
      Just (List.map2 initWire inputs outputs)
   else
     Nothing
+
+
+signal: Plug -> Wiring -> Bool -> Maybe Plug
+signal plug wiring reverse =
+  let
+    outputFilter: Wire -> Bool
+    outputFilter wire =
+      wire.output == plug
+
+    inputFilter: Wire -> Bool
+    inputFilter wire =
+        wire.input == plug
+    
+    maybeWire = List.filter (if reverse then outputFilter else inputFilter) wiring
+                  |> List.head
+  in
+    case maybeWire of
+      Just wire ->
+        Just (if reverse then wire.input else wire.output)
+      Nothing ->
+        Nothing
