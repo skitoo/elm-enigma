@@ -52,18 +52,6 @@ rotate rotor =
 signal: Rotor -> Char -> Bool -> Maybe Char
 signal rotor entry reverse =
   if not reverse then
-    case (getIndex entry baseAlphabet) of
-      Just value ->
-        String.slice value (value + 1) rotor.alphabet
-          |> String.toList
-          |> List.head
-      Nothing ->
-        Nothing
+    transpose entry baseAlphabet rotor.alphabet
   else
-    case (getIndex entry rotor.alphabet) of
-      Just value ->
-        String.slice value (value + 1) baseAlphabet
-          |> String.toList
-          |> List.head
-      Nothing ->
-        Nothing
+    transpose entry rotor.alphabet baseAlphabet

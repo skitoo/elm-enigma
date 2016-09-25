@@ -27,3 +27,14 @@ getChar index string =
   String.toList string
     |> Array.fromList
     |> Array.get index
+
+
+transpose : Char -> String -> String -> Maybe Char
+transpose inputChar inputAlphabet outputAlphabet =
+  case (getIndex inputChar inputAlphabet) of
+    Just value ->
+      String.slice value (value + 1) outputAlphabet
+        |> String.toList
+        |> List.head
+    Nothing ->
+      Nothing

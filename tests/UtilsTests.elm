@@ -7,6 +7,7 @@ import Enigma.Utils exposing
   , isValidChar
   , getIndex
   , getChar
+  , transpose
   )
 
 
@@ -57,6 +58,20 @@ all =
       , test "should return Nothing" <|
           \() ->
             getChar 1000 baseAlphabet
+              |> Expect.equal Nothing
+      ]
+    , describe "transpose"
+      [ test "transpose" <|
+          \() ->
+            transpose 'C' baseAlphabet "YRUHQSLDPXNGOKMIEBFZCWVJAT"
+              |> Expect.equal (Just 'U')
+      , test "transpose 'U'" <|
+          \() ->
+            transpose 'U' baseAlphabet "YRUHQSLDPXNGOKMIEBFZCWVJAT"
+              |> Expect.equal (Just 'C')
+      , test "transpose '3'" <|
+          \() ->
+            transpose '3' baseAlphabet "YRUHQSLDPXNGOKMIEBFZCWVJAT"
               |> Expect.equal Nothing
       ]
     ]
