@@ -22,7 +22,7 @@ module Enigma exposing
 -}
 
 import Enigma.Rotor as Rotor exposing (Rotor)
-import Enigma.Reflector exposing (..)
+import Enigma.Reflector as Reflector exposing (Reflector)
 
 
 {-| Define rotorI -}
@@ -52,10 +52,10 @@ rotorV = Rotor.build "VZBRGITYUPSDNHLXAWMJQOFECK" 'Z'
 
 {-| Define reflectorB -}
 reflectorB : Reflector
-reflectorB = "YRUHQSLDPXNGOKMIEBFZCWVJAT"
+reflectorB = Maybe.withDefault [] (Reflector.init "YRUHQSLDPXNGOKMIEBFZCWVJAT")
 
 
 {-| Define reflectorC -}
 reflectorC : Reflector
-reflectorC = "FVPJIAOYEDRZXWGCTKUQSBNMHL"
+reflectorC = Maybe.withDefault [] (Reflector.init "FVPJIAOYEDRZXWGCTKUQSBNMHL")
 

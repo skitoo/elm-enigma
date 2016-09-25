@@ -12,18 +12,18 @@ all : Test
 all =
   describe "Reflector"
     [
-      describe "signal 'C'"
-        [ test "signal" <|
+      describe "signal"
+        [ test "should return 'U'" <|
             \() ->
-              signal reflectorB 'C'
+              signal 'C' reflectorB
                 |> Expect.equal (Just 'U')
-        , test "signal 'U'" <|
+        , test "should return 'C'" <|
             \() ->
-              signal reflectorB 'U'
+              signal 'U' reflectorB
                 |> Expect.equal (Just 'C')
-        , test "signal '3'" <|
+        , test "should return Nothing" <|
             \() ->
-              signal reflectorB '3'
+              signal '3' reflectorB
                 |> Expect.equal Nothing
         ]
     ]

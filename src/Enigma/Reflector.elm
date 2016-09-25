@@ -1,13 +1,20 @@
 module Enigma.Reflector exposing (..)
 
-import Enigma.Utils exposing (baseAlphabet, transpose)
+import Enigma.Utils exposing (baseAlphabet)
+import Enigma.Wiring as Wiring exposing (Wiring, Plug)
 
 
 {-| Define a Reflector type -}
-type alias Reflector = String
+type alias Reflector = Wiring
 
 
-{-| Compute a Char in given reflector -}
-signal : Reflector -> Char -> Maybe Char
-signal reflector entry =
-  transpose entry baseAlphabet reflector
+{-| Initialize a Reflector. -}
+init: String -> Maybe Reflector
+init alphabet =
+  Wiring.initWiring baseAlphabet alphabet
+
+
+{-| Compute a Plug in given reflector -}
+signal : Plug -> Reflector -> Maybe Plug
+signal plug reflector =
+  Wiring.signal plug reflector False
