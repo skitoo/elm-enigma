@@ -2,7 +2,7 @@ module Enigma.Rotor exposing (..)
 
 import Enigma.Utils exposing (..)
 import String
-
+import List
 
 {-| Define a Rotor type. -}
 type alias Rotor =
@@ -46,3 +46,24 @@ rotate rotor =
             rotor
     Nothing ->
       rotor
+
+
+{-| Pass a signal into Rotor. -}
+signal: Rotor -> Char -> Bool -> Maybe Char
+signal rotor entry reverse =
+  if not reverse then
+    case (getIndex entry baseAlphabet) of
+      Just value ->
+        String.slice value (value + 1) rotor.alphabet
+          |> String.toList
+          |> List.head
+      Nothing ->
+        Nothing
+  else
+    case (getIndex entry rotor.alphabet) of
+      Just value ->
+        String.slice value (value + 1) baseAlphabet
+          |> String.toList
+          |> List.head
+      Nothing ->
+        Nothing

@@ -39,4 +39,26 @@ all =
               |> Rotor.rotate
               |> Expect.equal { rotor | position = Just 'J' }
       ]
+    , describe "signal"
+      [ test "should return 'J'" <|
+          \() ->
+            Rotor.signal rotor 'A' False
+              |> Expect.equal (Just 'J')
+      , test "should return 'H'" <|
+          \() ->
+            Rotor.signal rotor 'Z' False
+              |> Expect.equal (Just 'H')
+      , test "should return Nothing" <|
+          \() ->
+            Rotor.signal rotor '@' False
+              |> Expect.equal Nothing
+      , test "should return 'A'" <|
+          \() ->
+            Rotor.signal rotor 'J' True
+              |> Expect.equal (Just 'A')
+      , test "should return 'Z'" <|
+          \() ->
+            Rotor.signal rotor 'H' True
+              |> Expect.equal (Just 'Z')
+      ]
     ]
