@@ -19,7 +19,7 @@ all =
         \() ->
           Rotor.build "JGDQOXUSCAMIFRVTPNEWKBLZYH" 'Q'
             |> Expect.equal rotor
-    , test "initRotor" <|
+    , test "init" <|
         \() ->
           Rotor.init rotor 'C'
             |> Expect.equal { rotor | position = Just 'C' }
