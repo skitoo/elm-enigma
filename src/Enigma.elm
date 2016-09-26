@@ -1,12 +1,13 @@
-module Enigma exposing 
-  ( rotorI
-  , rotorII
-  , rotorIII
-  , rotorIV
-  , rotorV
-  , reflectorB
-  , reflectorC
-  )
+module Enigma
+    exposing
+        ( rotorI
+        , rotorII
+        , rotorIII
+        , rotorIV
+        , rotorV
+        , reflectorB
+        , reflectorC
+        )
 
 {-| This library is an implementation of an Enigma machine.
 
@@ -25,37 +26,50 @@ import Enigma.Rotor as Rotor exposing (Rotor)
 import Enigma.Reflector as Reflector exposing (Reflector)
 
 
-{-| Define rotorI -}
+{-| Define rotorI
+-}
 rotorI : Rotor
-rotorI = Rotor.init "EKMFLGDQVZNTOWYHXUSPAIBRCJ" 'Q'
+rotorI =
+    Rotor.init "EKMFLGDQVZNTOWYHXUSPAIBRCJ" 'Q'
 
 
-{-| Define rotorII -}
+{-| Define rotorII
+-}
 rotorII : Rotor
-rotorII = Rotor.init "AJDKSIRUXBLHWTMCQGZNPYFVOE" 'E'
+rotorII =
+    Rotor.init "AJDKSIRUXBLHWTMCQGZNPYFVOE" 'E'
 
 
-{-| Define rotorIII -}
+{-| Define rotorIII
+-}
 rotorIII : Rotor
-rotorIII = Rotor.init "BDFHJLCPRTXVZNYEIWGAKMUSQO" 'V'
+rotorIII =
+    Rotor.init "BDFHJLCPRTXVZNYEIWGAKMUSQO" 'V'
 
 
-{-| Define rotorIV -}
+{-| Define rotorIV
+-}
 rotorIV : Rotor
-rotorIV = Rotor.init "ESOVPZJAYQUIRHXLNFTGKDCMWB" 'J'
+rotorIV =
+    Rotor.init "ESOVPZJAYQUIRHXLNFTGKDCMWB" 'J'
 
 
-{-| Define rotorV -}
+{-| Define rotorV
+-}
 rotorV : Rotor
-rotorV = Rotor.init "VZBRGITYUPSDNHLXAWMJQOFECK" 'Z'
+rotorV =
+    Rotor.init "VZBRGITYUPSDNHLXAWMJQOFECK" 'Z'
 
 
-{-| Define reflectorB -}
+{-| Define reflectorB
+-}
 reflectorB : Reflector
-reflectorB = Maybe.withDefault [] (Reflector.init "YRUHQSLDPXNGOKMIEBFZCWVJAT")
+reflectorB =
+    Maybe.withDefault [] (Reflector.init "YRUHQSLDPXNGOKMIEBFZCWVJAT")
 
 
-{-| Define reflectorC -}
+{-| Define reflectorC
+-}
 reflectorC : Reflector
-reflectorC = Maybe.withDefault [] (Reflector.init "FVPJIAOYEDRZXWGCTKUQSBNMHL")
-
+reflectorC =
+    Maybe.withDefault [] (Reflector.init "FVPJIAOYEDRZXWGCTKUQSBNMHL")
