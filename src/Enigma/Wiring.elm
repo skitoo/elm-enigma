@@ -4,16 +4,22 @@ import String
 import List
 
 
+{-| Define Plug.
+-}
 type alias Plug =
     Char
 
 
+{-| Define Wire.
+-}
 type alias Wire =
     { input : Plug
     , output : Plug
     }
 
 
+{-| Initialize a Wire with 2 Plugs.
+-}
 initWire : Plug -> Plug -> Wire
 initWire input output =
     { input = input
@@ -21,10 +27,14 @@ initWire input output =
     }
 
 
+{-| Define Wiring.
+-}
 type alias Wiring =
     List Wire
 
 
+{-| Initialize a Wiring with 2 Strings.
+-}
 initWiring : String -> String -> Maybe Wiring
 initWiring inputAlphabet outputAlphabet =
     if String.length inputAlphabet == String.length outputAlphabet then
@@ -40,6 +50,8 @@ initWiring inputAlphabet outputAlphabet =
         Nothing
 
 
+{-| Send signal in Wiring.
+-}
 signal : Plug -> Wiring -> Bool -> Maybe Plug
 signal plug wiring reverse =
     let
@@ -74,6 +86,8 @@ signal plug wiring reverse =
                 Nothing
 
 
+{-| Extract alphabet from Wiring.
+-}
 extractAlphabet : (Wire -> Plug) -> Wiring -> String
 extractAlphabet func wiring =
     List.map func wiring
@@ -81,21 +95,29 @@ extractAlphabet func wiring =
         |> String.join ""
 
 
+{-| Return input Plug of a Wire.
+-}
 inputPlug : Wire -> Plug
 inputPlug wire =
     wire.input
 
 
+{-| Return input alphabet from Wiring.
+-}
 inputAlphabet : Wiring -> String
 inputAlphabet wiring =
     extractAlphabet inputPlug wiring
 
 
+{-| Return output Plug of a Wire.
+-}
 outputPlug : Wire -> Plug
 outputPlug wire =
     wire.output
 
 
+{-| Return output alphabet from Wiring.
+-}
 outputAlphabet : Wiring -> String
 outputAlphabet wiring =
     extractAlphabet outputPlug wiring
