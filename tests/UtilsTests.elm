@@ -9,6 +9,7 @@ import Enigma.Utils
         , getIndex
         , getChar
         , transpose
+        , hasDuplicates
         )
 
 
@@ -74,5 +75,15 @@ all =
                 \() ->
                     transpose '3' baseAlphabet "YRUHQSLDPXNGOKMIEBFZCWVJAT"
                         |> Expect.equal Nothing
+            ]
+        , describe "hasDuplicates"
+            [ test "should return True" <|
+                \() ->
+                    hasDuplicates [ 'A', 'B', 'A' ]
+                        |> Expect.true "must be true"
+            , test "should return False" <|
+                \() ->
+                    hasDuplicates [ 'A', 'B', 'C' ]
+                        |> Expect.false "must be false"
             ]
         ]

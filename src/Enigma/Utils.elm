@@ -3,6 +3,8 @@ module Enigma.Utils exposing (..)
 import Char
 import String
 import Array
+import List
+import Set
 
 
 baseAlphabet : String
@@ -41,3 +43,13 @@ transpose inputChar inputAlphabet outputAlphabet =
 
         Nothing ->
             Nothing
+
+
+hasDuplicates : List comparable -> Bool
+hasDuplicates list =
+    let
+        unifiedList =
+            Set.fromList list
+                |> Set.toList
+    in
+        List.length list /= List.length unifiedList
