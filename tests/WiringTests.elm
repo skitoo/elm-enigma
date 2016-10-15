@@ -15,9 +15,13 @@ all =
                         |> Expect.equal { input = 'A', output = 'C' }
             ]
         , describe "initWiring"
-            [ test "shoud return Nothing" <|
+            [ test "shoud return Nothing if string length are different" <|
                 \() ->
                     Wiring.initWiring "ABCDE" "ZYX"
+                        |> Expect.equal Nothing
+            , test "should return Nothing" <|
+                \() ->
+                    Wiring.initWiring "AACD" "ZXYZ"
                         |> Expect.equal Nothing
             , test "should return a Wiring record" <|
                 \() ->

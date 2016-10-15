@@ -2,6 +2,7 @@ module Enigma.Wiring exposing (..)
 
 import String
 import List
+import Enigma.Utils as Utils
 
 
 {-| Define Plug.
@@ -45,7 +46,10 @@ initWiring inputAlphabet outputAlphabet =
             outputs =
                 String.toList outputAlphabet
         in
-            Just (List.map2 initWire inputs outputs)
+            if Utils.hasDuplicates inputs || Utils.hasDuplicates outputs then
+                Nothing
+            else
+                Just (List.map2 initWire inputs outputs)
     else
         Nothing
 
