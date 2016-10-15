@@ -2,10 +2,11 @@ module Enigma.Plugboard
     exposing
         ( Plugboard
         , init
+        , signal
         , defaultPlugboard
         )
 
-import Enigma.Wiring as Wiring exposing (Wire, Wiring)
+import Enigma.Wiring as Wiring exposing (Wire, Wiring, Plug)
 import Enigma.Utils exposing (baseAlphabet, hasDuplicates)
 import String
 
@@ -78,3 +79,8 @@ mergeWiring a b =
                         wire
     in
         List.map merge principal
+
+
+signal : Plug -> Plugboard -> Maybe Plug
+signal plug plugboard =
+    Wiring.signal plug plugboard False

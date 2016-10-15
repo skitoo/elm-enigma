@@ -98,4 +98,30 @@ all =
                     Plugboard.init "ABCA" "ZEUX"
                         |> Expect.equal Nothing
             ]
+        , describe "signal"
+            [ test "should return Nothing" <|
+                \() ->
+                    Plugboard.init "ABCD" "WXYZ"
+                        |> Maybe.withDefault []
+                        |> Plugboard.signal '@'
+                        |> Expect.equal Nothing
+            , test "should return 'W'" <|
+                \() ->
+                    Plugboard.init "ABCD" "WXYZ"
+                        |> Maybe.withDefault []
+                        |> Plugboard.signal 'A'
+                        |> Expect.equal (Just 'W')
+            , test "should return 'A'" <|
+                \() ->
+                    Plugboard.init "ABCD" "WXYZ"
+                        |> Maybe.withDefault []
+                        |> Plugboard.signal 'W'
+                        |> Expect.equal (Just 'A')
+            , test "should return 'F'" <|
+                \() ->
+                    Plugboard.init "ABCD" "WXYZ"
+                        |> Maybe.withDefault []
+                        |> Plugboard.signal 'F'
+                        |> Expect.equal (Just 'F')
+            ]
         ]
