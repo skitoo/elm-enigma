@@ -7,6 +7,7 @@ import RotorTests
 import ReflectorTests
 import UtilsTests
 import WiringTests
+import PlugboardTests
 
 
 all : Test
@@ -16,6 +17,7 @@ all =
         , WiringTests.all
         , ReflectorTests.all
         , RotorTests.all
+        , PlugboardTests.all
         ]
 
 
