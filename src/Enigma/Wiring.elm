@@ -125,3 +125,15 @@ outputPlug wire =
 outputAlphabet : Wiring -> String
 outputAlphabet wiring =
     extractAlphabet outputPlug wiring
+
+
+findWireByInput : Plug -> Wiring -> Maybe Wire
+findWireByInput plug wiring =
+    List.filter (\wire -> inputPlug wire == plug) wiring
+        |> List.head
+
+
+findWireByOutput : Plug -> Wiring -> Maybe Wire
+findWireByOutput plug wiring =
+    List.filter (\wire -> outputPlug wire == plug) wiring
+        |> List.head

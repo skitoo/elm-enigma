@@ -106,4 +106,36 @@ all =
                         |> Wiring.outputAlphabet
                         |> Expect.equal "ZYX"
             ]
+        , describe "findWireByInput"
+            [ test "should return { input = 'A', output = 'Z'}" <|
+                \() ->
+                    Maybe.withDefault [] (Wiring.initWiring "ABC" "ZYX")
+                        |> Wiring.findWireByInput 'A'
+                        |> Expect.equal (Just (Wiring.initWire 'A' 'Z'))
+            , test "should return Nothing with unknow character" <|
+                \() ->
+                    Maybe.withDefault [] (Wiring.initWiring "ABC" "ZYX")
+                        |> Wiring.findWireByInput '@'
+                        |> Expect.equal Nothing
+            , test "should return Nothing with empty Wiring" <|
+                \() ->
+                    Wiring.findWireByInput 'A' []
+                        |> Expect.equal Nothing
+            ]
+        , describe "findWireByOutput"
+            [ test "should return { input = 'A', output = 'Z'}" <|
+                \() ->
+                    Maybe.withDefault [] (Wiring.initWiring "ABC" "ZYX")
+                        |> Wiring.findWireByOutput 'Z'
+                        |> Expect.equal (Just (Wiring.initWire 'A' 'Z'))
+            , test "should return Nothing with unknow character" <|
+                \() ->
+                    Maybe.withDefault [] (Wiring.initWiring "ABC" "ZYX")
+                        |> Wiring.findWireByOutput '@'
+                        |> Expect.equal Nothing
+            , test "should return Nothing with empty Wiring" <|
+                \() ->
+                    Wiring.findWireByOutput 'A' []
+                        |> Expect.equal Nothing
+            ]
         ]
