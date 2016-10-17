@@ -4,6 +4,7 @@ import Enigma.Utils exposing (..)
 import Enigma.Wiring as Wiring exposing (Wiring, Plug)
 import String
 import List
+import Array
 
 
 {-| Define a Rotor type.
@@ -67,4 +68,35 @@ rotate rotor =
 -}
 signal : Plug -> Rotor -> Bool -> Maybe Plug
 signal plug rotor reverse =
-    Wiring.signal plug rotor.wiring reverse
+    case rotor.position of
+        Just position ->
+            let
+                wiring = buildWiring position rotor.wiring
+            in
+                case wiring of
+                    Just w ->
+                        Wiring.signal plug w reverse
+                    Nothing ->
+                        Nothing
+        Nothing ->
+            Nothing
+
+
+buildWiring : Plug -> Wiring -> Maybe Wiring
+buildWiring position wiring =
+    let
+        inputAlphabet = Wiring.inputAlphabet wiring
+        outputAlphabet = Wiring.outputAlphabet wiring
+        stringPos = String.fromChar position
+        temp = String.split stringPos outputAlphabet
+            |> Array.fromList
+        tail = Array.get 0 temp
+        head = Array.get 1 temp
+    in
+        case tail of
+            Just t ->
+                case head of
+                    Just h ->
+                        Wiring.initWiring inputAlphabet (stringPos ++ h ++ t)
+                    Nothing -> Nothing
+            Nothing -> Nothing

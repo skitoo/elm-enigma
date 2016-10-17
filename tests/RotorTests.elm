@@ -15,6 +15,14 @@ rotor =
     }
 
 
+initializedRotor : Rotor
+initializedRotor =
+    { wiring = Maybe.withDefault [] (Wiring.initWiring baseAlphabet "JGDQOXUSCAMIFRVTPNEWKBLZYH")
+    , position = Just 'I'
+    , turnover = 'Q'
+    }
+
+
 all : Test
 all =
     describe "Rotor"
@@ -43,25 +51,38 @@ all =
                         |> Expect.equal { rotor | position = Just 'J' }
             ]
         , describe "signal"
-            [ test "should return 'J'" <|
+            [ test "should return Nothing if rotor has not position" <|
                 \() ->
                     Rotor.signal 'A' rotor False
-                        |> Expect.equal (Just 'J')
-            , test "should return 'H'" <|
-                \() ->
-                    Rotor.signal 'Z' rotor False
-                        |> Expect.equal (Just 'H')
+                        |> Expect.equal Nothing
             , test "should return Nothing" <|
                 \() ->
-                    Rotor.signal '@' rotor False
+                    Rotor.signal '@' initializedRotor False
                         |> Expect.equal Nothing
+            , test "should return 'I'" <|
+                \() ->
+                    Rotor.signal 'A' initializedRotor False
+                        |> Expect.equal (Just 'I')
+            , test "should return 'M'" <|
+                \() ->
+                    Rotor.signal 'Z' initializedRotor False
+                        |> Expect.equal (Just 'M')
+            , test "should return 'H'" <|
+                \() ->
+                    Rotor.signal 'O' initializedRotor False
+                        |> Expect.equal (Just 'H')
+
             , test "should return 'A'" <|
                 \() ->
-                    Rotor.signal 'J' rotor True
+                    Rotor.signal 'I' initializedRotor True
                         |> Expect.equal (Just 'A')
             , test "should return 'Z'" <|
                 \() ->
-                    Rotor.signal 'H' rotor True
+                    Rotor.signal 'M' initializedRotor True
                         |> Expect.equal (Just 'Z')
+            , test "should return 'O'" <|
+                \() ->
+                    Rotor.signal 'H' initializedRotor True
+                        |> Expect.equal (Just 'O')
             ]
         ]
