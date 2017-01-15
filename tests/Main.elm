@@ -8,6 +8,7 @@ import ReflectorTests
 import UtilsTests
 import WiringTests
 import PlugboardTests
+import EnigmaTests
 
 
 all : Test
@@ -18,6 +19,7 @@ all =
         , ReflectorTests.all
         , RotorTests.all
         , PlugboardTests.all
+        , EnigmaTests.all
         ]
 
 
