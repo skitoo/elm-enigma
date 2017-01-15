@@ -21,7 +21,7 @@ all =
         ]
 
 
-main : Program Value
+main : Test.Runner.Node.TestProgram
 main =
     run emit all
 
