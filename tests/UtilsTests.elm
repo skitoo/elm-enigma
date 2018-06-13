@@ -63,7 +63,7 @@ all =
                         |> Expect.equal Nothing
             ]
         , describe "transpose"
-            [ test "transpose" <|
+            [ test "transpose C" <|
                 \() ->
                     transpose 'C' baseAlphabet "YRUHQSLDPXNGOKMIEBFZCWVJAT"
                         |> Expect.equal (Just 'U')
